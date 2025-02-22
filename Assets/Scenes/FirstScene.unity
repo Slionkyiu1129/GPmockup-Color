@@ -897,11 +897,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ce046fe2a36044aa24ffc725212e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchOnSprite: {fileID: -8485249400698986136, guid: 7d64a573ef754f046af6ebf07595f6a4, type: 3}
-  switchOffSprite: {fileID: 0}
-  backgroundRenderer: {fileID: 487828029}
-  backgroundOnSprite: {fileID: -2223137820359034526, guid: d63f3340f37856c448e9a65c0e3ff301, type: 3}
-  backgroundOffSprite: {fileID: -3152644829378920338, guid: f795ea74a98ec5142bb35343b23ac103, type: 3}
 --- !u!61 &626688929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1269,6 +1264,37 @@ Transform:
   - {fileID: 1854759577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1441845586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441845587}
+  m_Layer: 0
+  m_Name: spawnPoint_FirstScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1441845587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441845586}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.78, y: -4.03, z: 0.03595988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1819655252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f01d760d7e8004485d6d65746375ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
 --- !u!212 &1838360684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1767,3 +1792,4 @@ SceneRoots:
   - {fileID: 626688931}
   - {fileID: 487828030}
   - {fileID: 1819655255}
+  - {fileID: 1441845587}

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class switchState : MonoBehaviour
 {
-    public Sprite switchOnSprite;  // 開啟時的圖片
-    public Sprite switchOffSprite; // 關閉時的圖片
-    public SpriteRenderer backgroundRenderer; // 連結背景的 SpriteRenderer
-    public Sprite backgroundOnSprite; // 開啟時的背景圖片
-    public Sprite backgroundOffSprite; // 關閉時的背景圖片
+    private Sprite switchOnSprite;  // 開啟時的圖片
+    private Sprite switchOffSprite; // 關閉時的圖片
+    private SpriteRenderer backgroundRenderer; // 連結背景的 SpriteRenderer
+    private Sprite backgroundOnSprite; // 開啟時的背景圖片
+    private Sprite backgroundOffSprite; // 關閉時的背景圖片
 
     private SpriteRenderer spriteRenderer;
     private bool isOn = false;
@@ -18,9 +18,15 @@ public class switchState : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = switchOffSprite; // 預設開關關閉
+        spriteRenderer.sprite = Resources.Load<Sprite>("Picture/");
+        GameObject backgroundObj = GameObject.Find("background");
+        if (backgroundObj != null)
+        {
+            backgroundRenderer = backgroundObj.GetComponent<SpriteRenderer>(); // 預設背景圖片
+        }
         if (backgroundRenderer != null)
         {
-            backgroundRenderer.sprite = backgroundOffSprite; // 預設背景圖片
+            backgroundRenderer.sprite = Resources.Load<Sprite>("Picture/openLight");
         }
     }
 
@@ -36,11 +42,11 @@ public class switchState : MonoBehaviour
     {
         isOn = !isOn;
         spriteRenderer.sprite = isOn ? switchOnSprite : switchOffSprite;
-
+        spriteRenderer.sprite = Resources.Load<Sprite>(isOn ? "Picture/offLight2" : "Picture/");
         // 切換背景圖片
         if (backgroundRenderer != null)
         {
-            backgroundRenderer.sprite = isOn ? backgroundOnSprite : backgroundOffSprite;
+            backgroundRenderer.sprite = Resources.Load<Sprite>(isOn ? "Picture/offLightBlack" : "Picture/openLight");
         }
     }
 

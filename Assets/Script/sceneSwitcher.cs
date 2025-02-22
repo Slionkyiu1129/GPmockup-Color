@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class sceneSwitcher : MonoBehaviour
 {
-    public string sceneName; // 目標場景名稱
+    public string sceneName = "SecondScene"; // 目標場景名稱
     public Transform spawnPoint; // 進入場景後的出生點
 
     void OnTriggerEnter2D(Collider2D other)

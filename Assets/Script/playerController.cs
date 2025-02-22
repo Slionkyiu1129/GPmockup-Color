@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    private float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
@@ -22,7 +22,7 @@ public class playerController : MonoBehaviour
             if(lastScene == "FirstScene" ){
                 transform.position = new Vector3(x, -y-1, 0); // 設定玩家新位置
             }
-            else{
+            else {
                 transform.position = new Vector3(x, -y+1, 0); // 設定玩家新位置
             }
         }
