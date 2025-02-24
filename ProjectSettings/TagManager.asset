@@ -53,3 +53,6 @@ TagManager:
   - name: offLight
     uniqueID: 2508545009
     locked: 0
+  - name: object
+    uniqueID: 758324317
+    locked: 0

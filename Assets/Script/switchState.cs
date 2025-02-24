@@ -14,19 +14,37 @@ public class switchState : MonoBehaviour
     private bool isOn = false;
     private bool isPlayerNearby = false;
 
+    // 新增可互動物件
+    public GameObject interactiveObject;
+    private SpriteRenderer interactiveRenderer;
+    private Sprite interactiveOnSprite;
+    private Sprite interactiveOffSprite;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = switchOffSprite; // 預設開關關閉
         spriteRenderer.sprite = Resources.Load<Sprite>("Picture/");
+
+        // 設定背景
         GameObject backgroundObj = GameObject.Find("background");
         if (backgroundObj != null)
         {
-            backgroundRenderer = backgroundObj.GetComponent<SpriteRenderer>(); // 預設背景圖片
+            backgroundRenderer = backgroundObj.GetComponent<SpriteRenderer>();
+            backgroundRenderer.sprite = Resources.Load<Sprite>("Picture/openLight1");
         }
-        if (backgroundRenderer != null)
+
+        // 設定互動物件
+        if (interactiveObject != null)
         {
-            backgroundRenderer.sprite = Resources.Load<Sprite>("Picture/openLight");
+            interactiveRenderer = interactiveObject.GetComponent<SpriteRenderer>();
+            interactiveOnSprite = Resources.Load<Sprite>("Picture/interactiveOn");
+            interactiveOffSprite = Resources.Load<Sprite>("Picture/interactiveOff");
+            // 確保圖片有載入成功
+            Debug.Log("interactiveOnSprite: " + (interactiveOnSprite != null));
+            Debug.Log("interactiveOffSprite: " + (interactiveOffSprite != null));
+
+            // 預設顯示關閉狀態
+            interactiveRenderer.sprite = interactiveOffSprite;
         }
     }
 
@@ -43,10 +61,38 @@ public class switchState : MonoBehaviour
         isOn = !isOn;
         spriteRenderer.sprite = isOn ? switchOnSprite : switchOffSprite;
         spriteRenderer.sprite = Resources.Load<Sprite>(isOn ? "Picture/offLight2" : "Picture/");
+
         // 切換背景圖片
         if (backgroundRenderer != null)
         {
-            backgroundRenderer.sprite = Resources.Load<Sprite>(isOn ? "Picture/offLightBlack" : "Picture/openLight");
+            backgroundRenderer.sprite = Resources.Load<Sprite>(isOn ? "Picture/offLight1" : "Picture/openLight1");
+        }
+
+        // 切換互動物件的圖片
+        if (interactiveRenderer != null)
+        {
+            interactiveRenderer.sprite = isOn ? interactiveOnSprite : interactiveOffSprite;
+        }
+
+        // 開關開啟後，開始 10 秒計時
+        if (isOn)
+        {
+            StartCoroutine(SwitchOffAfterDelay(10f));
+        }
+    }
+
+    IEnumerator SwitchOffAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // 10 秒後關閉開關
+        isOn = false;
+        spriteRenderer.sprite = switchOffSprite;
+        spriteRenderer.sprite = Resources.Load<Sprite>("Picture/");
+        
+        if (backgroundRenderer != null)
+        {
+            backgroundRenderer.sprite = Resources.Load<Sprite>("Picture/openLight");
         }
     }
 

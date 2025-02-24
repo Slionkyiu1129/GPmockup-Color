@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c22a104841a948345bf38c7534997055
+guid: 09520a628db7786448e5df88c61359e7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2040452433845403415
-    second: offLight_0
+      213: -6912016537269152326
+    second: offLight1 (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: offLight_0
+      name: offLight1 (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71fbf648da4215c10800000000000000
-      internalID: 2040452433845403415
+      spriteID: ab5527ea4959310a0800000000000000
+      internalID: -6912016537269152326
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      offLight_0: 2040452433845403415
+      offLight1 (1)_0: -6912016537269152326
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
