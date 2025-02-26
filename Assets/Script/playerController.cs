@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-    private float moveSpeed = 5f;
+    private float normalSpeed = 5f;
+    private float sprintSpeed = 10f;
     private Rigidbody2D rb;
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
@@ -14,6 +15,7 @@ public class playerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // 獲取 SpriteRenderer
 
+        //為了測試新場景
         string lastScene = PlayerPrefs.GetString("LastScene", "");
         if (PlayerPrefs.HasKey("LastX") && PlayerPrefs.HasKey("LastY"))
         {
@@ -26,6 +28,7 @@ public class playerController : MonoBehaviour
                 transform.position = new Vector3(x, -y+1, 0); // 設定玩家新位置
             }
         }
+        //
     }
 
     void Update()
@@ -43,7 +46,14 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // 移動角色
-        rb.velocity = movement.normalized * moveSpeed;
+        // Shift加速
+        float currentSpeed = Input.GetKey(KeyCode.R) ? sprintSpeed : normalSpeed;
+        Vector2 newPosition = rb.position + movement * currentSpeed * Time.fixedDeltaTime;
+
+        // 限制玩家位置
+        newPosition.x = Mathf.Clamp(newPosition.x, -5, 43);
+        newPosition.y = Mathf.Clamp(newPosition.y, -4, 44);
+
+        rb.MovePosition(newPosition);
     }
 }
