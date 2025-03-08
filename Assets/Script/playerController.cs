@@ -16,18 +16,18 @@ public class playerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // 獲取 SpriteRenderer
 
         //為了測試新場景
-        string lastScene = PlayerPrefs.GetString("LastScene", "");
-        if (PlayerPrefs.HasKey("LastX") && PlayerPrefs.HasKey("LastY"))
-        {
-            float x = PlayerPrefs.GetFloat("LastX");
-            float y = PlayerPrefs.GetFloat("LastY");
-            if(lastScene == "FirstScene" ){
-                transform.position = new Vector3(x, -y-1, 0); // 設定玩家新位置
-            }
-            else {
-                transform.position = new Vector3(x, -y+1, 0); // 設定玩家新位置
-            }
-        }
+        //string lastScene = PlayerPrefs.GetString("LastScene", "");
+        //if (PlayerPrefs.HasKey("LastX") && PlayerPrefs.HasKey("LastY"))
+        //{
+        //    float x = PlayerPrefs.GetFloat("LastX");
+        //    float y = PlayerPrefs.GetFloat("LastY");
+        //    if(lastScene == "FirstScene" ){
+        //        transform.position = new Vector3(x, -y-1, 0); // 設定玩家新位置
+        //    }
+        //    else {
+        //        transform.position = new Vector3(x, -y+1, 0); // 設定玩家新位置
+        //    }
+        //}
         //
     }
 
