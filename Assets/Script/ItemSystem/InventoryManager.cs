@@ -2,17 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class inventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //為了讓所有腳本都有Accessbility，一個接口的概念
+    #region Singleton
+    public static InventoryManager Instance;
+    private void Awake()
     {
-        
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this);
+    }
+    #endregion
+
+
+    public List<Item> ItemList;
+    public delegate void onInventoryChange();
+    public onInventoryChange onInventoryCallBack;
+
+    public void Add(Item newItem)
+    {
+        ItemList.Add(newItem);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Remove(Item oldItem)
     {
-        
+        ItemList.Remove(oldItem);
     }
 }
