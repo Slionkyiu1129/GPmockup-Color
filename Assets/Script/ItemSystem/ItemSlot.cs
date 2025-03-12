@@ -9,6 +9,7 @@ public class ItemSlot : MonoBehaviour
     Item item;
     public Image ItemImage;
     public TextMeshProUGUI ItemName;
+    public Image HighlightImage;
 
     public void AddItem(Item thisItem)
     {
@@ -16,6 +17,9 @@ public class ItemSlot : MonoBehaviour
 
         ItemImage.sprite = item.ItemImage;
         ItemName.text = item.ItemName;
+
+        ItemImage.enabled = true;
+        SetHighlight(false);
     }
 
     public void RemoveItem()
@@ -31,6 +35,9 @@ public class ItemSlot : MonoBehaviour
 
         ItemImage.sprite = null;
         ItemName.text = "Empty";
+
+        ItemImage.enabled = false;
+        SetHighlight(false);
     }
 
     public void UseItem()
@@ -44,5 +51,10 @@ public class ItemSlot : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void SetHighlight(bool state)
+    {
+        HighlightImage.gameObject.SetActive(state); // 開啟或關閉高亮框
     }
 }

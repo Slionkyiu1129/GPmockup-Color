@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//InventoryManager ¬O©Ò¦³ª««~¬ÛÃö¸}¥»ªº®Ö¤ß
-//ºŞ²zª««~²M³æ
-//·íª««~ÅÜ§ó®É³qª¾UI
+//InventoryManager æ˜¯æ‰€æœ‰ç‰©å“ç›¸é—œè…³æœ¬çš„æ ¸å¿ƒ
+//ç®¡ç†ç‰©å“æ¸…å–®
+//ç•¶ç‰©å“è®Šæ›´æ™‚é€šçŸ¥UI
 
 public class InventoryManager : MonoBehaviour
 {
-    //¬°¤FÅı©Ò¦³¸}¥»³£¦³Accessbility¡A¤@­Ó±µ¤fªº·§©À
-    //Singleton ¬O¤@ºØ³]­p¼Ò¦¡¡A½T«O¦b¹CÀ¸¤¤¥u¦³¤@­Ó InventoryManager ¦s¦b
-
+    //ç‚ºäº†è®“æ‰€æœ‰è…³æœ¬éƒ½æœ‰Accessbilityï¼Œä¸€å€‹æ¥å£çš„æ¦‚å¿µ
+    //Singleton æ˜¯ä¸€ç¨®è¨­è¨ˆæ¨¡å¼ï¼Œç¢ºä¿åœ¨éŠæˆ²ä¸­åªæœ‰ä¸€å€‹ InventoryManager å­˜åœ¨
+    
     #region Singleton
     public static InventoryManager Instance;
 
+    
     private void Awake()
     {
-        //½T«O¥u¦³¤@­Ó InventoryManager ¦s¦b
+        //ç¢ºä¿åªæœ‰ä¸€å€‹ InventoryManager å­˜åœ¨
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -26,20 +27,36 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
         }
 
-        //½T«O InventoryManager ¤£·|¦A¤Á´«³õ´º®É³Q§R°£¡Aª««~¥i¥H¸ó³õ´º¨Ï¥Î¡A¤£·|³Q­«¸m
+        //ç¢ºä¿ InventoryManager ä¸æœƒåœ¨åˆ‡æ›å ´æ™¯æ™‚è¢«åˆªé™¤ï¼Œç‰©å“å¯ä»¥è·¨å ´æ™¯ä½¿ç”¨ï¼Œä¸æœƒè¢«é‡ç½®
         DontDestroyOnLoad(this);
 
+        if (onInventoryCallBack == null)
+        {
+            onInventoryCallBack = delegate { }; // ç¢ºä¿ä¸æœƒæ˜¯ NULL
+        }
+
+        Debug.Log("InventoryManager Initialized!");
     }
     #endregion
 
-
-    public List<Item> ItemList;
+    public List<Item> ItemList = new List<Item>();
     public delegate void onInventoryChange();
     public onInventoryChange onInventoryCallBack;
 
     public void Add(Item newItem)
     {
         ItemList.Add(newItem);
+
+        Debug.Log("Item added to inventory: " + newItem.ItemName);
+
+        if (onInventoryCallBack != null)
+        {
+            onInventoryCallBack();
+        }
+        else
+        {
+            Debug.LogWarning("onInventoryCallBack is NULL! UI will not update.");
+        }
     }
 
     public void Remove(Item oldItem)

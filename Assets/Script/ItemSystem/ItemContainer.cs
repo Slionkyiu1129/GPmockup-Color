@@ -15,7 +15,16 @@ public class ItemContainer : MonoBehaviour
 
             //Add item to inventory
             InventoryManager.Instance.Add(thisItem);
-            InventoryManager.Instance.onInventoryCallBack();
+
+            if (InventoryManager.Instance.onInventoryCallBack != null)
+            {
+                InventoryManager.Instance.onInventoryCallBack();
+            }
+            else
+            {
+                Debug.LogWarning("onInventoryCallBack is NULL. Ensure InventoryUI subscribes to it.");
+            }
+            //InventoryManager.Instance.onInventoryCallBack();
 
             Destroy(gameObject);
         }
