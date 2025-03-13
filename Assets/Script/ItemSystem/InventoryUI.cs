@@ -6,7 +6,6 @@ public class InventoryUI : MonoBehaviour
 {
     public ItemSlot[] ItemSlots;
     public Transform InventoryParent;
-    //public static InventoryUI Instance;
 
     public GameObject selectionCursor; // UI 元素，表示選中的物品
     private int selectedSlotIndex = 0; // 當前選擇的欄位索引
