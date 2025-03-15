@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 //InventoryManager 是所有物品相關腳本的核心
 //管理物品清單
@@ -13,7 +14,7 @@ public class InventoryManager : MonoBehaviour
     
     #region Singleton
     public static InventoryManager Instance;
-
+    //public SaveData saveData = new SaveData();
     
     private void Awake()
     {
@@ -43,6 +44,19 @@ public class InventoryManager : MonoBehaviour
     public delegate void onInventoryChange();
     public onInventoryChange onInventoryCallBack;
 
+    private void Start()
+    {
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError("SaveManager.Instance is NULL!");
+        }
+        LoadInventory(); // 嘗試讀取存檔
+        Debug.Log("載入的物品數量: " + ItemList.Count);
+
+        // 觸發 UI 更新，確保顯示正確
+        onInventoryCallBack?.Invoke();
+    }
+
     public void Add(Item newItem)
     {
         ItemList.Add(newItem);
@@ -63,4 +77,25 @@ public class InventoryManager : MonoBehaviour
     {
         ItemList.Remove(oldItem);
     }
+
+    private void LoadInventory()
+    {
+        SaveData saveData = SaveManager.Instance.LoadGame();
+        foreach (string itemID in saveData.pickedUpItems)
+        {
+        Debug.Log($"🔎 嘗試載入物品 ID: {itemID}");
+        Item item = ItemDatabase.Instance.GetItemByID(itemID);
+        
+        if (item != null)
+        {
+            Debug.Log($"✅ 成功找到物品: {item.ItemName}");
+            Add(item);
+        }
+        else
+        {
+            Debug.LogWarning($"❌ 找不到物品 ID：{itemID}");
+        }
+        }
+    }
+
 }

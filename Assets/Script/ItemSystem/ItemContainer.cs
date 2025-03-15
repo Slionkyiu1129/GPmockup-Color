@@ -6,16 +6,28 @@ public class ItemContainer : MonoBehaviour
 {
     public Item thisItem;
     private bool isPlayerNearby = false;
+    public string itemID; // 唯一的物品 ID
+
+    private void Start()
+    {
+        // 如果物品已經被撿起，就隱藏它
+        if (SaveManager.Instance.HasPickedUpItem(itemID))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     private void Update()
     {
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("Pressed T");
-
+            SaveManager.Instance.AddPickedUpItem(itemID);
+            
             //Add item to inventory
             InventoryManager.Instance.Add(thisItem);
-
+            InventoryManager.Instance.onInventoryCallBack();
+            /*偵錯用
             if (InventoryManager.Instance.onInventoryCallBack != null)
             {
                 InventoryManager.Instance.onInventoryCallBack();
@@ -24,8 +36,7 @@ public class ItemContainer : MonoBehaviour
             {
                 Debug.LogWarning("onInventoryCallBack is NULL. Ensure InventoryUI subscribes to it.");
             }
-            //InventoryManager.Instance.onInventoryCallBack();
-
+            */
             Destroy(gameObject);
         }
     }

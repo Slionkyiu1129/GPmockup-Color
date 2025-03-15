@@ -7,43 +7,24 @@ public class InventoryUI : MonoBehaviour
     public ItemSlot[] ItemSlots;
     public Transform InventoryParent;
 
-    public GameObject selectionCursor; // UI 元素，表示選中的物品
-    private int selectedSlotIndex = 0; // 當前選擇的欄位索引
-    private int columns = 2; // 你的背包欄位每列有幾個 (需根據 UI 設定)
+    public GameObject selectionCursor;
+    private int selectedSlotIndex = 0;
+    private int columns = 2;
     private int itemCount => InventoryManager.Instance.ItemList.Count;
 
     private void Start()
     {
-        /* Debug訊息
-        if (InventoryManager.Instance != null)
-        {
-            InventoryManager.Instance.onInventoryCallBack += UpdateUI;
-            Debug.Log("InventoryUI subscribed to onInventoryCallBack");
-        }
-        else
-        {
-            Debug.LogError("InventoryManager.Instance is NULL! InventoryUI cannot subscribe.");
-        }
-
-        // 確保一開始更新 UI
-       
-        for (int i = 0; i < ItemSlots.Length; i++)
-        {
-            ItemSlots[i].gameObject.SetActive(false); // 沒有物品時隱藏欄位
-        }
-        */
-        
         InventoryManager.Instance.onInventoryCallBack += UpdateUI;
         ItemSlots = InventoryParent.GetComponentsInChildren<ItemSlot>();
 
-        // 確保所有欄位初始為隱藏
+        /*
         foreach (var slot in ItemSlots)
         {
             slot.gameObject.SetActive(false);
         }
-
+        */
+        
         UpdateUI();
-
         UpdateCursorPosition();
     }
 
@@ -71,7 +52,7 @@ public class InventoryUI : MonoBehaviour
             else
             {
                 ItemSlots[i].Clean();
-                ItemSlots[i].gameObject.SetActive(false); // 沒有物品時隱藏欄位
+                ItemSlots[i].gameObject.SetActive(false);
             }
         }
     }
@@ -80,23 +61,18 @@ public class InventoryUI : MonoBehaviour
     {
         int newIndex = selectedSlotIndex + (vertical * columns) + horizontal;
 
-        // 確保新索引不超出範圍
         if (newIndex < 0 || newIndex >= itemCount)
             return;
 
-        // 確保不會從最右邊跳到最左邊 (防止 A/D 錯位)
-        if ((selectedSlotIndex % columns == 0 && horizontal == -1) ||  // 左邊界限制
-            ((selectedSlotIndex + 1) % columns == 0 && horizontal == 1)) // 右邊界限制
+        if ((selectedSlotIndex % columns == 0 && horizontal == -1) ||  
+            ((selectedSlotIndex + 1) % columns == 0 && horizontal == 1)) 
         {
             return;
         }
 
-        // 確保選擇的欄位是顯示中的 (避免選到 `SetActive(false)` 的欄位)
         while (!ItemSlots[newIndex].gameObject.activeSelf)
         {
             newIndex += horizontal != 0 ? horizontal : vertical * columns;
-
-            // 如果超出範圍，就返回
             if (newIndex < 0 || newIndex >= itemCount)
                 return;
         }
@@ -126,10 +102,10 @@ public class InventoryUI : MonoBehaviour
     }
 }
 
-/* 保留原本的寫法
+/* 
 private void MoveSelection(int rowChange, int colChange)
 {
-    int columns = 2; // 設定背包橫向有幾格
+    int columns = 2;
     int rows = ItemSlots.Length / columns;
 
     int newRow = selectedSlotIndex / columns + rowChange;
