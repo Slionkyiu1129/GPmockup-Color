@@ -733,6 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f01d760d7e8004485d6d65746375ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: ff167a663885da54b8cd9781333d8b13, type: 2}
 --- !u!212 &185943226
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1359,7 +1360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c087ec2e6266045995b11b2e9fdffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: BackpackScene
+  sceneName: LoadScene
   spawnPoint: {fileID: 185943227}
 --- !u!61 &372146091
 BoxCollider2D:

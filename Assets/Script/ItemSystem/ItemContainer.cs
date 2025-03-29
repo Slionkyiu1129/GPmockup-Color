@@ -27,6 +27,7 @@ public class ItemContainer : MonoBehaviour
             //Add item to inventory
             InventoryManager.Instance.Add(thisItem);
             InventoryManager.Instance.onInventoryCallBack();
+
             /*偵錯用
             if (InventoryManager.Instance.onInventoryCallBack != null)
             {

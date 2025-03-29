@@ -9,12 +9,13 @@ public class playerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
+    public PlayerData playerData;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // 獲取 SpriteRenderer
-
+        transform.position = playerData.playerPosition;
         //為了測試新場景
         //string lastScene = PlayerPrefs.GetString("LastScene", "");
         //if (PlayerPrefs.HasKey("LastX") && PlayerPrefs.HasKey("LastY"))
@@ -42,6 +43,11 @@ public class playerController : MonoBehaviour
             spriteRenderer.flipX = false; // 向右
         else if (movement.x < 0) 
             spriteRenderer.flipX = true;  // 向左
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerData.playerPosition = transform.position;
+        }
     }
 
     void FixedUpdate()

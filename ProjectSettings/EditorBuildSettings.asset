@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SecondScene.unity
     guid: 731e8e07ec82776468f54912714d1fd9
+  - enabled: 1
+    path: Assets/Scenes/BackpackScene.unity
+    guid: 5726fc57834308848bb2c9e3991cb0a3
+  - enabled: 1
+    path: Assets/Scenes/LoadScene.unity
+    guid: a9b2e66044b44384fa0561f445e3710d
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
