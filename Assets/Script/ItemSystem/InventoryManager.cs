@@ -83,18 +83,18 @@ public class InventoryManager : MonoBehaviour
         SaveData saveData = SaveManager.Instance.LoadGame();
         foreach (string itemID in saveData.pickedUpItems)
         {
-        Debug.Log($"🔎 嘗試載入物品 ID: {itemID}");
-        Item item = ItemDatabase.Instance.GetItemByID(itemID);
+            Debug.Log($"🔎 嘗試載入物品 ID: {itemID}");
+            Item item = ItemDatabase.Instance.GetItemByID(itemID);
         
-        if (item != null)
-        {
-            Debug.Log($"✅ 成功找到物品: {item.ItemName}");
-            Add(item);
-        }
-        else
-        {
-            Debug.LogWarning($"❌ 找不到物品 ID：{itemID}");
-        }
+            if (item != null)
+            {
+                Debug.Log($"✅ 成功找到物品: {item.ItemName}");
+                Add(item);
+            }
+            else
+            {
+                Debug.LogWarning($"❌ 找不到物品 ID：{itemID}");
+            }
         }
     }
 

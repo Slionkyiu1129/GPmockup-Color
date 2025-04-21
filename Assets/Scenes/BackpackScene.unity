@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: 146a78a0f362c964ea2c33d2e8817318, type: 2}
-  itemID: 3
+  saveItemID: 3
 --- !u!58 &743339872
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2571,7 +2571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: 146a78a0f362c964ea2c33d2e8817318, type: 2}
-  itemID: 4
+  saveItemID: 4
 --- !u!58 &1105826802
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3336,7 +3336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: af712488dd192a141b189b9702f82247, type: 2}
-  itemID: 1
+  saveItemID: 1
 --- !u!61 &1315864330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3946,7 +3946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: af712488dd192a141b189b9702f82247, type: 2}
-  itemID: 2
+  saveItemID: 2
 --- !u!61 &1488875183
 BoxCollider2D:
   m_ObjectHideFlags: 0
