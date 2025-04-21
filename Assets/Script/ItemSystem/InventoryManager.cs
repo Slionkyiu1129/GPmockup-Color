@@ -78,6 +78,7 @@ public class InventoryManager : MonoBehaviour
         ItemList.Remove(oldItem);
     }
 
+    //要載入存取的資料
     private void LoadInventory()
     {
         SaveData saveData = SaveManager.Instance.LoadGame();
